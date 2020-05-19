@@ -1,3 +1,4 @@
+import axios from 'axios'
 
 export default {
   mode: 'universal',
@@ -42,12 +43,22 @@ export default {
   */
   modules: [
     '@nuxt/http',
+    '@nuxtjs/axios',
     '@nuxtjs/dotenv'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
+  generate: {
+    routes (callback) {
+      axios.get('https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision')
+        .then((res) => {
+          const routes = res.data.derpy_nav.map((post) => {
+            return '/work/' + post.title
+          })
+          callback(null, routes)
+        })
+        .catch(callback)
+    },
+    subFolders: false
+  },
   http: {
     // proxyHeaders: false
   },
