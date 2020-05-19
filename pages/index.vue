@@ -1,29 +1,43 @@
 <template>
-  <div class="container">
-    <p v-if="$fetchState.pending">
-      Fetching posts...
-    </p>
-    <p v-else-if="$fetchState.error">
-      Error while fetching posts: {{ $fetchState.error.message }}
-    </p>
-    <ul v-else>
-      <li v-for="post of posts.derpy_nav" :key="post.title">
-        <n-link class="h1" :to="`/work/${post.slug}`">
-          {{ post.title }}
-        </n-link>
-      </li>
-    </ul>
-  </div>
+  <p v-if="loading">
+    Fetching Data...
+  </p>
+  <ul v-else>
+    <li v-for="post of data.derpy_nav" :key="post.id">
+      <n-link class="h1" :to="`/work/${post.slug}`">
+        {{ post.title }}
+      </n-link>
+    </li>
+  </ul>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   async fetch () {
-    this.posts = await this.$http.$get('https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision')
+    if (!this.dataLoaded) {
+      this.data = await this.$http.$get('https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision')
+    } else {
+      this.data = this.derpy
+    }
   },
   data () {
     return {
-      posts: []
+      data: {}
+    }
+  },
+  computed: {
+    ...mapState({
+      derpy: state => state.api.derpy,
+      dataLoaded: state => state.api.dataLoaded
+    }),
+    loading () {
+      if (!this.dataLoaded) {
+        return this.$fetchState.pending
+      } else {
+        return false
+      }
     }
   }
 }

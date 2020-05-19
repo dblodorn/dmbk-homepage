@@ -8,5 +8,5 @@ mixin(_, {
   find: find
 })
 
-export default async (slug, data) =>
+export default (slug, data) =>
   _.find(data, { slug: slug })

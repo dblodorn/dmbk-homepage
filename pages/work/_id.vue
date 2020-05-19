@@ -1,7 +1,5 @@
 <template>
-  <div v-if="loading">
-    Fetching Data...
-  </div>
+  <div v-if="loading">Fetching Data...</div>
   <article class="project-wrapper" v-else>
     <h1>
       {{ post.title }}
@@ -9,11 +7,6 @@
     <div class="image-wrapper">
       <img :src="post.project_photo.large" />
     </div>
-    <p>
-      <n-link to="/">
-        Back to posts
-      </n-link>
-    </p>
   </article>
 </template>
 
@@ -23,7 +16,11 @@ import getPostData from './../../scripts/getPostData'
 
 export default {
   async fetch () {
-    this.post = await this.$http.$get(`https://dmbk.io/wp-json/dmbk-io-api/v1/project/?name=${this.$route.params.id}`)
+    if (!this.dataLoaded) {
+      this.post = await this.$http.$get(`https://dmbk.io/wp-json/dmbk-io-api/v1/project/?name=${this.$route.params.id}`)
+    } else {
+      this.post = getPostData(this.$route.params.id, this.projects)
+    }
   },
   data () {
     return {
@@ -36,7 +33,11 @@ export default {
       dataLoaded: state => state.api.dataLoaded
     }),
     loading () {
-      return this.$fetchState.pending
+      if (!this.dataLoaded) {
+        return this.$fetchState.pending
+      } else {
+        return false
+      }
     }
   }
 }
