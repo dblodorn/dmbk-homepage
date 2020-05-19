@@ -1,4 +1,6 @@
 import axios from 'axios'
+import FetchJsonWebpackPlugin from 'fetch-json-webpack-plugin'
+import endpoints from './endpoints'
 
 export default {
   mode: 'universal',
@@ -31,36 +33,34 @@ export default {
   */
   plugins: [
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
-  ],
-  /*
-  ** Nuxt.js modules
-  */
+  buildModules: [],
   modules: [
     '@nuxt/http',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv'
   ],
+  http: {},
+  server: {
+    port: 8000,
+    host: '0.0.0.0'
+  },
   generate: {
+    plugins: [
+      new FetchJsonWebpackPlugin({
+        ...endpoints
+      })
+    ],
     routes (callback) {
       axios.get('https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision')
         .then((res) => {
           const routes = res.data.derpy_nav.map((post) => {
-            return '/work/' + post.title
+            return '/work/' + post.slug
           })
           callback(null, routes)
         })
         .catch(callback)
     },
     subFolders: false
-  },
-  http: {
-    // proxyHeaders: false
   },
   build: {
     postcss: {
@@ -77,6 +77,19 @@ export default {
               return { customMedia }
             }
           ]
+        }
+      }
+    },
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          styles: {
+            name: 'styles',
+            test: /\.(css|vue)$/,
+            chunks: 'all',
+            enforce: true
+          }
         }
       }
     },

@@ -8,7 +8,7 @@
     </p>
     <ul v-else>
       <li v-for="post of posts.derpy_nav" :key="post.title">
-        <n-link class="h1" :to="`/work/${post.title}`">
+        <n-link class="h1" :to="`/work/${post.slug}`">
           {{ post.title }}
         </n-link>
       </li>
