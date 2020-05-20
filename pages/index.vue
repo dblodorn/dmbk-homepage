@@ -39,6 +39,14 @@ export default {
         return false
       }
     }
+  },
+  head () {
+    return {
+      title: 'HELLO',
+      meta: [
+        { hid: 'description', name: 'description', content: 'My custom description' }
+      ]
+    }
   }
 }
 </script>

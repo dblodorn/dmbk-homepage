@@ -13,6 +13,7 @@
 <script>
 import { mapState } from 'vuex'
 import getPostData from './../../scripts/getPostData'
+import trimExcerpt from './../../scripts/trimExcerpt'
 
 export default {
   async fetch () {
@@ -38,6 +39,14 @@ export default {
       } else {
         return false
       }
+    }
+  },
+  head () {
+    return {
+      title: this.post.title,
+      meta: [
+        { hid: 'description', name: 'description', content: this.post.description }
+      ]
     }
   }
 }
