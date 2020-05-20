@@ -12,8 +12,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import getPostData from './../../scripts/getPostData'
-import trimExcerpt from './../../scripts/trimExcerpt'
 
 export default {
   async fetch () {
