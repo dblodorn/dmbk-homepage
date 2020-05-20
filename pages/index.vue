@@ -1,10 +1,8 @@
 <template>
-  <p v-if="loading">
-    Fetching Data...
-  </p>
+  <p v-if="loading">Fetching Data...</p>
   <ul v-else>
     <li v-for="post of data.derpy_nav" :key="post.id">
-      <n-link class="h1" :to="`/work/${post.slug}`">
+      <n-link class="h1 stroke-type-bw" :to="`/work/${post.slug}`">
         {{ post.title }}
       </n-link>
     </li>

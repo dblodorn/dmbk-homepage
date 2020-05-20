@@ -1,9 +1,7 @@
 <template>
   <div v-if="loading">Fetching Data...</div>
   <article class="project-wrapper" v-else>
-    <h1>
-      {{ post.title }}
-    </h1>
+    <h1 class="stroke-type-bw">{{ post.title }}</h1>
     <div class="image-wrapper">
       <img :src="post.project_photo.large" />
     </div>

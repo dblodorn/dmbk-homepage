@@ -10,7 +10,7 @@
   --p_sm: 1.65rem;
   --p_med: 2rem;
   --p_lg: 3rem;
-  --font-a: Arial, sans-serif;
+  --font-a: 'PDU', sans-serif;
   --font-b: Arial, sans-serif;
 }
 
@@ -54,6 +54,14 @@
   font-family: var(--font-b);
   font-style: var(--font-style-b);
   font-weight: var(--font-weight-b);
+}
+
+.stroke-type-bw {
+  color: var(--white);
+  -webkit-text-fill-color: var(--white);
+  -webkit-text-stroke-color: var(--black);
+  -webkit-text-stroke-width: 2px;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* TYPOGRPAHY */

@@ -1,6 +1,6 @@
 <template>
   <header class="border-top border-bottom bg-white">
-    <n-link to="/"><h1>DMBK</h1></n-link>
+    <n-link to="/"><h1 class="stroke-type-bw">DMBK</h1></n-link>
   </header>
 </template>
 
