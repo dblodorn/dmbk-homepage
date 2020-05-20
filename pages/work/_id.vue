@@ -12,6 +12,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import getPostData from './../../scripts/getPostData'
 
 export default {
   async fetch () {
