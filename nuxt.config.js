@@ -29,15 +29,10 @@ export default {
   ],
   http: {},
   server: {
-    port: 8000,
+    port: 8080,
     host: '0.0.0.0'
   },
   generate: {
-    plugins: [
-      new FetchJsonWebpackPlugin({
-        ...endpoints
-      })
-    ],
     routes (callback) {
       axios.get('https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision')
         .then((res) => {
@@ -48,9 +43,19 @@ export default {
         })
         .catch(callback)
     },
+    plugins: [
+      new FetchJsonWebpackPlugin({
+        ...endpoints
+      })
+    ],
     subFolders: false
   },
   build: {
+    plugins: [
+      new FetchJsonWebpackPlugin({
+        ...endpoints
+      })
+    ],
     postcss: {
       plugins: {
         autoprefixer: {},
