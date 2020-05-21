@@ -3,11 +3,11 @@ import { endpoints } from './../../endpoints'
 
 export default {
   async fetchCoreData ({ commit }) {
-    console.log(process.env.BASE_URL)
-    const data = await this.$http.$get((process.env.NODE_ENV === 'development') ? endpoints[0].url : `${process.env.BASE_URL}/_nuxt/core-data.json`)
+    console.log()
+    const data = await this.$http.$get((process.env.NODE_ENV === 'development') ? endpoints[0].url : `${process.env.BASE_URL}/_nuxt/core-data${__webpack_hash__}.json`)
     commit('setOptions', data.options)
     commit('setProjects', data.all_projects)
-    const derpy = await this.$http.$get((process.env.NODE_ENV === 'development') ? endpoints[1].url : `${process.env.BASE_URL}/_nuxt/derpy-data.json`)
+    const derpy = await this.$http.$get((process.env.NODE_ENV === 'development') ? endpoints[1].url : `${process.env.BASE_URL}/_nuxt/derpy-data${__webpack_hash__}.json`)
     commit('setDerpy', derpy)
     await commit('setApiData', true)
   }

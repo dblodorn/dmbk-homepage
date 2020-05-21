@@ -3,12 +3,12 @@ module.exports = {
     {
       url: 'https://dmbk.io/wp-json/dmbk-io-api/v1/core/',
       filename: 'core-data',
-      hash: false
+      hash: true
     },
     {
       url: 'https://dmbk.io/wp-json/dmbk-io-api/v1/derpyvision/',
       filename: 'derpy-data',
-      hash: false
+      hash: true
     }
   ]
 }

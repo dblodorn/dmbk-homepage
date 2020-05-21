@@ -1,4 +1,5 @@
 import axios from 'axios'
+import webpack from 'webpack'
 import FetchJsonWebpackPlugin from 'fetch-json-webpack-plugin'
 import endpoints from './endpoints'
 
@@ -49,7 +50,8 @@ export default {
     plugins: [
       new FetchJsonWebpackPlugin({
         ...endpoints
-      })
+      }),
+      new webpack.ExtendedAPIPlugin()
     ],
     subFolders: false
   },
