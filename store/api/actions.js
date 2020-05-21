@@ -3,6 +3,7 @@ import { endpoints } from './../../endpoints'
 
 export default {
   async fetchCoreData ({ commit }) {
+    console.log(process.env.BASE_URL)
     const data = await this.$http.$get((process.env.NODE_ENV === 'development') ? endpoints[0].url : `${process.env.BASE_URL}/_nuxt/core-data.json`)
     commit('setOptions', data.options)
     commit('setProjects', data.all_projects)
