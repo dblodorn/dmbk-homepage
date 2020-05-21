@@ -4,6 +4,9 @@ import endpoints from './endpoints'
 
 export default {
   mode: 'universal',
+  env: {
+    BASE_URL: process.env.BASE_URL || 'http://localhost:8080'
+  },
   head: {
     title: process.env.npm_package_name || 'DMBK',
     meta: [
