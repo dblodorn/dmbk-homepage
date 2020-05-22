@@ -1,9 +1,23 @@
 <template>
   <div v-if="loading">Fetching Data...</div>
-  <article class="project-wrapper" v-else>
-    <h1 class="stroke-type-bw">{{ post.title }}</h1>
-    <div class="image-wrapper">
-      <img :src="post.project_photo.large" />
+  <article v-else class="project-wrapper responsive-grid sm-col-1 md-col-1 lg-col-2">
+    <div class="col pad-single border-right">
+      <div class="copy-wrapper mw-med">
+        <h1 class="stroke-type-bw mw-sm">{{ post.title }}</h1>
+        <div class="description y-pad-double" v-html="post.description"/>
+        <menu class="project-links flex-column">
+          <a class="p link-style-a" v-for="link of post.project_links" :key="link.url" :href="link.link_url">
+            <span v-html="link.link_copy" />
+          </a>
+        </menu>
+      </div>
+    </div>
+   <div class="col">
+      <div class="image-wrapper">
+        <div class="image-sizer image-cover">
+          <img :src="`${post.project_photo.large}`" />
+        </div>
+      </div>
     </div>
   </article>
 </template>
@@ -55,5 +69,9 @@ export default {
 }
 .image-wrapper {
   width: 100%;
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+  overflow-y: visible;
 }
 </style>

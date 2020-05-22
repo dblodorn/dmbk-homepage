@@ -2,3 +2,13 @@
   font-family: 'PDU';
   src: url('/fonts/pdu_regular.woff');
 }
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('/fonts/SpaceMono-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Space Mono Italic';
+  src: url('/fonts/SpaceMono-Italic.ttf');
+}

@@ -1,6 +1,5 @@
 /* DEFAULTS */
 :root { 
-  --footer-height: 25rem;
   --pad-big: 5rem;
   --pad-double: 3rem;
   --pad-single: 1.5rem;
@@ -10,6 +9,7 @@
   --max-width-large: 96rem;
   --max-width-xl: 140rem;
   --header-height: 5rem;
+  --footer-height: 10rem;
 }
 
 @media (--lg) {
@@ -19,7 +19,6 @@
     --pad-single: 2rem;
     --pad-micro: 1rem;
     --header-height: 6rem;
-    --footer-height: 25rem;
   }
 }
 
@@ -30,6 +29,5 @@
     --pad-single: 2rem;
     --pad-micro: 1rem;
     --header-height: 6rem;
-    --footer-height: 25rem;
   }
 }

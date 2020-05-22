@@ -1,8 +1,9 @@
 :root { 
   --black: #000000;
   --white: #FFFFFF;
-  --text-color: #000000;
-  --text-bg: #ffffff;
+  --text-color: #348fff;
+  --text-bg: #ecd8c1;
+  --light-grey: #bfbfbf;
   --black-screen: rgba(0,0,0,.9);
   --lt-grey: #ececec;
   --border-black: 2px solid var(--black);
