@@ -1,12 +1,14 @@
 import axios from 'axios'
 import webpack from 'webpack'
 import FetchJsonWebpackPlugin from 'fetch-json-webpack-plugin'
-import endpoints from './endpoints'
+import endpoints from './endpoints.json'
 
 export default {
   mode: 'universal',
   env: {
-    BASE_URL: process.env.BASE_URL || 'http://localhost:8080'
+    BASE_URL: process.env.BASE_URL || 'http://localhost:8080',
+    APP_TITLE: process.env.APP_TITLE,
+    APP_VERSION: process.env.APP_VERSION
   },
   head: {
     title: process.env.npm_package_name || 'DMBK',
@@ -24,8 +26,11 @@ export default {
     '@/assets/css/main.css',
   ],
   plugins: [
+    { src: '@/plugins/event-bus' }
   ],
-  buildModules: [],
+  buildModules: [
+    'nuxt-purgecss'
+  ],
   modules: [
     '@nuxt/http',
     '@nuxtjs/axios',
@@ -47,30 +52,30 @@ export default {
         })
         .catch(callback)
     },
-    plugins: [
-      new FetchJsonWebpackPlugin({
-        ...endpoints
-      }),
-      new webpack.ExtendedAPIPlugin()
-    ],
     subFolders: false
   },
   build: {
-    plugins: [
-      new FetchJsonWebpackPlugin({
-        ...endpoints
-      })
-    ],
+    extend (config, { isDev }) {
+      if (isDev) { 
+        console.log('development')
+      } else {
+        config.plugins.push(
+          new FetchJsonWebpackPlugin({
+            ...endpoints
+          })
+        )
+      }
+    },
     postcss: {
       plugins: {
         autoprefixer: {},
         'postcss-custom-media': {
           importFrom: [
             () => {
-              const { breakpoints } = require('./globals')
+              const { screens } = require('./globals.json')
               const customMedia = {}
-              for (let size in breakpoints) {
-                customMedia[`--${size}`] = `(min-width: ${breakpoints[size]}px)`
+              for (let size in screens) {
+                customMedia[`--${size}`] = `(min-width: ${screens[size]}px)`
               }
               return { customMedia }
             }

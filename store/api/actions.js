@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { endpoints } from './../../endpoints'
+import { endpoints } from './../../endpoints.json'
 
 export default {
   async fetchCoreData ({ commit }) {

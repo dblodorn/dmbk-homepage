@@ -1,6 +1,6 @@
 :root { 
-  --h1: 8rem;
-  --h2: 4.5rem;
+  --h1: 3.5rem;
+  --h2: 3.5rem;
   --h3: 2.24rem;
   --h4: 1.85rem;
   --h5: 1.5rem;
@@ -12,6 +12,13 @@
   --p_lg: 2.65rem;
   --font-a: 'PDU', sans-serif;
   --font-b: 'Space Mono', sans-serif;
+}
+
+@media (--lg) {
+  :root {
+    --h1: 8rem;
+    --h2: 3.5rem;
+  }
 }
 
 .font-a {
